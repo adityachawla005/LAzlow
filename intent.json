@@ -1,0 +1,226 @@
+[
+  {
+    "intent": "open_app",
+    "examples": [
+      "open firefox",
+      "launch chrome",
+      "start calculator",
+      "run spotify",
+      "open terminal and run gedit",
+      "start vlc media player",
+      "launch terminal and open htop",
+      "run terminal and type nano",
+      "start terminal and execute neofetch"
+    ]
+  },
+  {
+    "intent": "close_application",
+    "examples": [
+      "close the app",
+      "quit firefox",
+      "exit the application",
+      "kill the process",
+      "end the task",
+      "shut the app down",
+      "close terminal",
+      "terminate this app",
+      "stop the program"
+    ]
+  },
+  {
+    "intent": "type_text",
+    "examples": [
+      "type hello world",
+      "write good morning",
+      "input my password",
+      "type excuses",
+      "write down the message",
+      "input the text",
+      "type something on the screen",
+      "write this for me",
+      "type the reason"
+    ]
+  },
+  {
+    "intent": "press_keys",
+    "examples": [
+      "press ctrl alt delete",
+      "press keys shift enter",
+      "hit alt f4",
+      "press the keys ctrl a",
+      "press hotkey ctrl c"
+    ]
+  },
+  {
+    "intent": "delete_file",
+    "examples": [
+      "delete test.txt",
+      "remove my_folder",
+      "erase backup.zip",
+      "delete file named data.json",
+      "remove file report.docx"
+    ]
+  },
+  {
+    "intent": "move_mouse",
+    "examples": [
+      "move mouse to 100,200",
+      "move cursor to 300, 400",
+      "move pointer to 500 600",
+      "place the mouse at 200 300",
+      "take cursor to 250, 250"
+    ]
+  },
+  {
+    "intent": "click_mouse",
+    "examples": [
+      "click",
+      "click mouse",
+      "press left click",
+      "tap the mouse",
+      "click on screen"
+    ]
+  },
+  {
+    "intent": "double_click",
+    "examples": [
+      "double click",
+      "double tap",
+      "double click the mouse",
+      "click twice",
+      "do a double click"
+    ]
+  },
+  {
+    "intent": "right_click",
+    "examples": [
+      "right click",
+      "right tap",
+      "click the right button",
+      "right click the mouse"
+    ]
+  },
+  {
+    "intent": "select_all",
+    "examples": [
+      "select all",
+      "highlight everything",
+      "mark all text",
+      "ctrl a",
+      "select everything on screen"
+    ]
+  },
+  {
+    "intent": "copy_text",
+    "examples": [
+      "copy this",
+      "copy text",
+      "ctrl c",
+      "copy what's selected",
+      "copy that"
+    ]
+  },
+  {
+    "intent": "paste_text",
+    "examples": [
+      "paste it",
+      "paste text",
+      "ctrl v",
+      "paste from clipboard",
+      "paste here"
+    ]
+  },
+  {
+    "intent": "press_delete",
+    "examples": [
+      "press delete",
+      "hit delete key",
+      "delete this",
+      "remove selected",
+      "delete what's highlighted"
+    ]
+  },
+  {
+    "intent": "drag_mouse",
+    "examples": [
+      "drag to 300, 400",
+      "drag the cursor",
+      "move and hold to 500 600",
+      "click and drag to 100 100",
+      "drag the mouse here"
+    ]
+  },
+  {
+    "intent": "scroll_mouse",
+    "examples": [
+      "scroll up",
+      "scroll down",
+      "scroll the page",
+      "move the page down",
+      "scroll upward"
+    ]
+  },
+  {
+    "intent": "volume_control",
+    "examples": [
+      "increase the volume",
+      "turn up the sound",
+      "raise volume",
+      "make it louder",
+      "volume up",
+      "decrease the volume",
+      "turn down the sound",
+      "reduce volume",
+      "make it quieter",
+      "volume down",
+      "mute the sound",
+      "mute"
+    ]
+  },
+  {
+    "intent": "confirm_yes",
+    "examples": [
+      "click yes",
+      "confirm",
+      "accept",
+      "yes",
+      "press enter",
+      "go ahead"
+    ]
+  },
+  {
+    "intent": "confirm_no",
+    "examples": [
+      "click no",
+      "cancel",
+      "decline",
+      "no",
+      "press escape",
+      "don't allow"
+    ]
+  },
+  {
+    "intent": "vibe",
+    "examples": [
+      "vibe",
+      "play music",
+      "start spotify vibe",
+      "launch the vibe",
+      "begin the playlist",
+      "start the music"
+    ]
+  },
+  {
+    "intent": "navigate",
+    "examples": [
+      "search ",
+      "click on search",
+      "focus on search bar",
+      "navigate to search",
+      "start a search",
+      "tap the search bar",
+      "go to search",
+      "activate search box"
+    ]
+  }
+]
