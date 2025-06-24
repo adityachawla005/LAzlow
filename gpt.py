@@ -16,7 +16,6 @@ from os_actions import (
     close_application
 )
 
-SERP_API_KEY = "5ff080f9f8b3182c00c09d251a0f064f50208586074335f5e47bced15fbbdd7c"
 DEBUG = True
 assistant_locked = False
 
@@ -197,14 +196,17 @@ def fallback_web_search(query):
     except Exception as e:
         log_debug(f"[DUCKDUCKGO ERROR] {e}")
         return "I couldn't access the internet right now."
+    
 
 def ask_gpt(user_input):
     responses = []
 
-    for cmd in split_into_commands(user_input):
+    for i, cmd in enumerate(split_into_commands(user_input)):
         result = handle_intent(cmd)
         if result:
             responses.append(result)
+        if i < len(split_into_commands(user_input)) - 1:
+            time.sleep(1)  # small gap between multiple commands
 
     if responses:
         log_debug(f"[INTENT RESULT] {responses}")
@@ -212,7 +214,7 @@ def ask_gpt(user_input):
 
     log_debug("[INTENT FALLBACK] No valid intent matched, trying web then Ollama...")
 
-    # 🌐 DuckDuckGo fallback (always try first)
+    # 🌐 DuckDuckGo fallback
     try:
         web_result = fallback_web_search(user_input)
         if web_result and web_result.strip() and "couldn't" not in web_result.lower():
@@ -220,21 +222,34 @@ def ask_gpt(user_input):
     except Exception as e:
         log_debug(f"[WEB FALLBACK ERROR] {e}")
 
-    # 🧠 Ollama fallback
+    # 🧠 Ollama fallback with Lazlow system persona
     try:
         log_debug(f"[OLLAMA PROMPT] {user_input}")
         response = requests.post(
-            "http://localhost:11434/api/generate",
+            "http://localhost:11434/api/chat",
             headers={"Content-Type": "application/json"},
             json={
-                "model": "mistral",
-                "prompt": user_input,
+                "model": "llama3",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are Lazlow, a smart, helpful, and slightly witty desktop assistant created by Aditya. "
+                            "You live on the user's computer and can answer questions, describe yourself, and offer helpful tips. "
+                            "If asked about yourself, reply confidently as Lazlow. Be concise and human-friendly."
+                        )
+                    },
+                    {
+                        "role": "user",
+                        "content": user_input
+                    }
+                ],
                 "stream": False
             },
             timeout=30
         )
         data = response.json()
-        reply = data.get("response", "").strip()
+        reply = data.get("message", {}).get("content", "").strip()
         log_debug(f"[OLLAMA RESPONSE] {reply}")
         return reply or "Sorry, I didn’t find anything useful."
     except requests.exceptions.ReadTimeout:
