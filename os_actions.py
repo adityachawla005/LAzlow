@@ -176,6 +176,7 @@ def detect_and_activate_button(command):
     return f"Clicked button for: {command}"
 
 
+
 def control_volume(action):
     try:
         if platform.system() == "Linux":
@@ -186,8 +187,11 @@ def control_volume(action):
                 subprocess.run(["pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%"])
                 return "Volume decreased."
             elif action == "mute":
-                subprocess.run(["pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle"])
-                return "Muted/unmuted."
+                subprocess.run(["pactl", "set-sink-mute", "@DEFAULT_SINK@", "1"])
+                return "Volume muted."
+            elif action == "unmute":
+                subprocess.run(["pactl", "set-sink-mute", "@DEFAULT_SINK@", "0"])
+                return "Volume unmuted."
             else:
                 return "Unknown volume command."
         else:

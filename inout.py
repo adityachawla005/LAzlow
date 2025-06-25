@@ -79,12 +79,13 @@ def thinking_animation(duration=3):
 def listen_and_respond():
     global last_error_time, should_exit
     display_lazlow_banner()
-    while not should_exit:
-        if is_speaking():
-            time.sleep(0.1)
-            continue
+    last_command = ""
 
-        time.sleep(0.5)  # give mic time to settle after TTS ends
+    while not should_exit:
+        while is_speaking():
+            time.sleep(0.1)
+
+        time.sleep(0.5)  
 
         with suppress_alsa_errors():
             with sr.Microphone() as source:
@@ -95,7 +96,15 @@ def listen_and_respond():
                     continue
 
         try:
-            command = r.recognize_google(audio).lower()
+            command = r.recognize_google(audio).lower().strip()
+            if command == "":
+                continue
+
+            if command == last_command:
+                console.print("[dim]⚠️ Skipping repeated input...[/dim]")
+                continue
+            last_command = command
+
             console.print(f"[bold yellow]You said:[/] {command}")
         except sr.UnknownValueError:
             if time.time() - last_error_time > 60:

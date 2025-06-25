@@ -150,8 +150,11 @@ def handle_intent(user_input):
                         return control_volume("up")
                     elif "down" in original_input or "decrease" in original_input or "quieter" in original_input:
                         return control_volume("down")
-                elif "mute" in original_input:
+                    elif "mute" in original_input:
                         return control_volume("mute")
+                    elif "unmute" in original_input:
+                        return control_volume("unmute")
+
                 log_debug(f"[VOLUME INTENT IGNORED] Input: {original_input}")
                 return None
 
@@ -234,7 +237,7 @@ def ask_gpt(user_input):
                     {
                         "role": "system",
                         "content": (
-                            "You are Lazlow, a smart, helpful, and slightly witty desktop assistant created by Aditya. "
+                            "You are Lazlow, a smart, helpful, and slightly witty desktop assistant created by Glaizz. "
                             "You live on the user's computer and can answer questions, describe yourself, and offer helpful tips. "
                             "If asked about yourself, reply confidently as Lazlow. Be concise and human-friendly."
                         )
